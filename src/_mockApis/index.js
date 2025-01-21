@@ -9,7 +9,6 @@ import './userprofile/PostData';
 import './userprofile/UsersData';
 import './blog/blogData';
 import './language/LanguageData';
-import './kanban/KanbanData';
 import './invoice/invoiceLists';
 
 mock.onAny().passThrough();
