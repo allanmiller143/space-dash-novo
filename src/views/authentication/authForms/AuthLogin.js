@@ -1,32 +1,49 @@
-import React from 'react';
-import {
-  Box,
-  Typography,
-  FormGroup,
-  FormControlLabel,
-  Button,
-  Stack,
-  Divider,
-} from '@mui/material';
+import {Box,Typography,Button,Stack,Divider, CircularProgress,} from '@mui/material';
 import { Link } from 'react-router-dom';
-
-import CustomCheckbox from '../../../components/forms/theme-elements/CustomCheckbox';
 import CustomTextField from '../../../components/forms/theme-elements/CustomTextField';
 import CustomFormLabel from '../../../components/forms/theme-elements/CustomFormLabel';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { postData } from '../../../Services/Api';
 
-import AuthSocialButtons from './AuthSocialButtons';
+function AuthLogin  ()  {
 
-const AuthLogin = ({ title, subtitle, subtext }) => (
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+
+  const login = async (event) => {
+    event.preventDefault();
+
+
+    if (email === '' || password === '') {
+      alert('Preencha todos os campos');
+    } else {
+      setLoading(true);
+      try {
+        const data = { email: email, password: password };
+        const response = await postData('login/admin', data);
+        if (response.status === 200 || response.status === 201) {
+          const token = response.data.accessToken;
+          const user = response.data.user;
+          localStorage.setItem('token', token);
+          localStorage.setItem('admin', JSON.stringify(user));
+          navigate('/dashboards/modern');
+        } else {
+          alert('Email ou senha inválidos');
+        }
+      } catch (error) {
+        alert('Ocorreu um erro');
+      } finally {
+        setLoading(false);      }
+    }
+  };
+
+
+
+  return (
   <>
-    {title ? (
-      <Typography fontWeight="700" variant="h3" mb={1}>
-        {title}
-      </Typography>
-    ) : null}
-
-    {subtext}
-
-    <AuthSocialButtons title="Sign in with" />
     <Box mt={3}>
       <Divider>
         <Typography
@@ -37,38 +54,21 @@ const AuthLogin = ({ title, subtitle, subtext }) => (
           position="relative"
           px={2}
         >
-          or sign in with
+          Entre no painel
         </Typography>
       </Divider>
     </Box>
 
     <Stack>
       <Box>
-        <CustomFormLabel htmlFor="username">Username</CustomFormLabel>
-        <CustomTextField id="username" variant="outlined" fullWidth />
+        <CustomFormLabel htmlFor="username">Email</CustomFormLabel>
+        <CustomTextField id="username" variant="outlined" fullWidth onChange={(e) => setEmail(e.target.value)} />
       </Box>
       <Box>
-        <CustomFormLabel htmlFor="password">Password</CustomFormLabel>
-        <CustomTextField id="password" type="password" variant="outlined" fullWidth />
+        <CustomFormLabel htmlFor="password">Senha</CustomFormLabel>
+        <CustomTextField id="password" type="password" variant="outlined" fullWidth onChange={(e) => setPassword(e.target.value)}/>
       </Box>
       <Stack justifyContent="space-between" direction="row" alignItems="center" my={2}>
-        <FormGroup>
-          <FormControlLabel
-            control={<CustomCheckbox defaultChecked />}
-            label="Remeber this Device"
-          />
-        </FormGroup>
-        <Typography
-          component={Link}
-          to="/auth/forgot-password"
-          fontWeight="500"
-          sx={{
-            textDecoration: 'none',
-            color: 'primary.main',
-          }}
-        >
-          Forgot Password ?
-        </Typography>
       </Stack>
     </Stack>
     <Box>
@@ -77,15 +77,16 @@ const AuthLogin = ({ title, subtitle, subtext }) => (
         variant="contained"
         size="large"
         fullWidth
-        component={Link}
-        to="/"
         type="submit"
+        onClick={login}
+        disabled={loading}
       >
-        Sign In
+        {
+          !loading ? 'Entrar' : <CircularProgress size={20} color='inherit' /> 
+        }
       </Button>
     </Box>
-    {subtitle}
   </>
-);
+  )}
 
 export default AuthLogin;

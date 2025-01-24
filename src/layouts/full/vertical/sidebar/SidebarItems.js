@@ -40,7 +40,6 @@ const SidebarItems = () => {
               />
             );
 
-            // {/********If Sub No Menu**********/}
           } else {
             return (
               <NavItem

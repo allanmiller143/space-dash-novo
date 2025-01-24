@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import { Provider } from 'react-redux';
@@ -7,6 +7,8 @@ import { store } from './store/Store';
 import Spinner from './views/spinner/Spinner';
 import './_mockApis';
 import './utils/i18n';
+import './index.css';
+import {Toaster} from  'sonner';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={store}>
@@ -14,6 +16,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <BrowserRouter>
         <App />
       </BrowserRouter>
+      <Toaster richColors position="top-right"/>
+
     </Suspense>
   </Provider>,
 )

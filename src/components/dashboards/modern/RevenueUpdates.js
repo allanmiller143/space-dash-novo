@@ -1,25 +1,61 @@
-import React from 'react';
+import { useEffect, useState } from 'react';
 import Chart from 'react-apexcharts';
 import { useTheme } from '@mui/material/styles';
-import { MenuItem, Grid, Stack, Typography, Button, Avatar, Box } from '@mui/material';
+import { Grid, Stack, Typography, Button, Box } from '@mui/material';
 import { IconGridDots } from '@tabler/icons';
 import DashboardCard from '../../shared/DashboardCard';
-import CustomSelect from '../../forms/theme-elements/CustomSelect';
+import { getData } from '../../../Services/Api';
+import {toast} from 'sonner';
 
-const RevenueUpdates = () => {
-  const [month, setMonth] = React.useState('1');
+const AtualizacaoReceitas = () => {
+  const [dadosApi, setDadosApi] = useState([]);
+  const [totalvalue, setTotalvalue] = useState(0);
+  const [maxGrafico, setMaxGrafico] = useState(0);
+  const token = localStorage.getItem("token");
 
-  const handleChange = (event) => {
-    setMonth(event.target.value);
+  const meses = [
+    "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", 
+    "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
+  ];
+
+  const getGraphicProperties = async () => {
+    try {
+      const response = await getData('admin/properties/monthly', token);
+      if (response.status === 200 || response.status === 201) {
+        const dados = response.userInfo;
+
+        // Preencher os meses ausentes com valores padrão
+        const dadosCompletos = meses.map((mes) => {
+          const dado = dados.find((d) => d.month === mes);
+          return dado || { month: mes, value: 0 };  // Adiciona valor 0 se o mês não existir
+        });
+
+        setDadosApi(dadosCompletos);
+
+        // Calcula o valor máximo do gráfico
+        const maxValor = Math.max(...dadosCompletos.map((dado) => dado.value));
+        setMaxGrafico(maxValor + 5);
+
+        // Calcula o total de value
+        const total = dadosCompletos.reduce((acc, dado) => acc + dado.value, 0);
+        setTotalvalue(total);
+      } else {
+        alert('Erro ao carregar conteúdo');
+        console.log(response);
+      }
+    } catch (error) {
+      alert('Ocorreu um erro inesperado');
+    }
   };
 
-  // chart color
-  const theme = useTheme();
-  const primary = theme.palette.primary.main;
-  const secondary = theme.palette.secondary.main;
+  useEffect(() => {
+    getGraphicProperties();
+  }, []);
 
-  // chart
-  const optionscolumnchart = {
+  const theme = useTheme();
+  const primaria = theme.palette.primary.main;
+
+  const opcoesGrafico = {
     chart: {
       type: 'bar',
       fontFamily: "'Inter', sans-serif;",
@@ -28,20 +64,18 @@ const RevenueUpdates = () => {
         show: true,
       },
       height: 370,
-      stacked: true,
+      stacked: false,
     },
-    colors: [primary, secondary],
+    colors: [primaria],
     plotOptions: {
       bar: {
         horizontal: false,
         barHeight: '60%',
-        columnWidth: '20%',
+        columnWidth: '40%',
         borderRadius: [6],
         borderRadiusApplication: 'end',
-        borderRadiusWhenStacked: 'all',
       },
     },
-
     stroke: {
       show: false,
     },
@@ -54,19 +88,14 @@ const RevenueUpdates = () => {
     grid: {
       borderColor: 'rgba(0,0,0,0.1)',
       strokeDashArray: 3,
-      xaxis: {
-        lines: {
-          show: false,
-        },
-      },
     },
     yaxis: {
-      min: -5,
-      max: 5,
+      min: 0,
+      max: maxGrafico, // Define o valor máximo dinamicamente
       tickAmount: 4,
     },
     xaxis: {
-      categories: ['16/08', '17/08', '18/08', '19/08', '20/08', '21/08', '22/08'],
+      categories: dadosApi.map((dado) => dado.month),
       axisBorder: {
         show: false,
       },
@@ -76,50 +105,29 @@ const RevenueUpdates = () => {
       fillSeriesColor: false,
     },
   };
-  const seriescolumnchart = [
+
+  const dadosGrafico = [
     {
-      name: 'Eanings this month',
-      data: [1.5, 2.7, 2.2, 3.6, 1.5, 1.0],
-    },
-    {
-      name: 'Expense this month',
-      data: [-1.8, -1.1, -2.5, -1.5, -0.6, -1.8],
+      name: 'value por mês',
+      data: dadosApi.map((dado) => dado.value),
     },
   ];
 
   return (
     <DashboardCard
-      title="Revenue Updates"
-      subtitle="Overview of Profit"
-      action={
-        <CustomSelect
-          labelId="month-dd"
-          id="month-dd"
-          value={month}
-          size="small"
-          onChange={handleChange}
-        >
-          <MenuItem value={1}>March 2023</MenuItem>
-          <MenuItem value={2}>Feb 2023</MenuItem>
-          <MenuItem value={3}>Jan 2023</MenuItem>
-        </CustomSelect>
-      }
+      title="Atualização de novos imóveis"
+      subtitle="Visão Geral de todos os imoveis cadastrados"
     >
       <Grid container spacing={3}>
-        {/* column */}
-        <Grid item xs={12} sm={8}>
+        {/* Gráfico */}
+        <Grid item xs={12} sm={9}>
           <Box className="rounded-bars">
-            <Chart
-              options={optionscolumnchart}
-              series={seriescolumnchart}
-              type="bar"
-              height="370px"
-            />
+            <Chart options={opcoesGrafico} series={dadosGrafico} type="bar" height="370px" />
           </Box>
         </Grid>
-        {/* column */}
-        <Grid item xs={12} sm={4}>
-          <Stack spacing={3} mt={3}>
+        {/* Informações */}
+        <Grid item xs={12} sm={3} display="flex" flexDirection="column" justifyContent="start" >
+          <Stack spacing={3} my={3}>
             <Stack direction="row" spacing={2} alignItems="center">
               <Box
                 width={40}
@@ -134,41 +142,19 @@ const RevenueUpdates = () => {
                 </Typography>
               </Box>
               <Box>
-                <Typography variant="h3" fontWeight="700">
-                  $63,489.50
+                <Typography variant="h5" fontWeight="700">
+                  {totalvalue} imóveis
                 </Typography>
                 <Typography variant="subtitle2" color="textSecondary">
-                  Total Earnings
+                  Total
                 </Typography>
               </Box>
             </Stack>
           </Stack>
-          <Stack spacing={3} my={5}>
-            <Stack direction="row" spacing={2}>
-              <Avatar
-                sx={{ width: 9, mt: 1, height: 9, bgcolor: primary, svg: { display: 'none' } }}
-              ></Avatar>
-              <Box>
-                <Typography variant="subtitle1" color="textSecondary">
-                  Earnings this month
-                </Typography>
-                <Typography variant="h5">$48,820</Typography>
-              </Box>
-            </Stack>
-            <Stack direction="row" spacing={2}>
-              <Avatar
-                sx={{ width: 9, mt: 1, height: 9, bgcolor: secondary, svg: { display: 'none' } }}
-              ></Avatar>
-              <Box>
-                <Typography variant="subtitle1" color="textSecondary">
-                  Expense this month
-                </Typography>
-                <Typography variant="h5">$26,498</Typography>
-              </Box>
-            </Stack>
-          </Stack>
-          <Button color="primary" variant="contained" fullWidth>
-            View Full Report
+          <Button color="primary" fontSize="12px" variant="contained" fullWidth>
+            <Typography variant="body2">
+              Ver Relatório Completo
+            </Typography>
           </Button>
         </Grid>
       </Grid>
@@ -176,4 +162,4 @@ const RevenueUpdates = () => {
   );
 };
 
-export default RevenueUpdates;
+export default AtualizacaoReceitas;

@@ -38,13 +38,13 @@ const Header = () => {
           maxWidth: customizer.isLayout === 'boxed' ? 'lg' : '100%!important',
         }}
       >
-        <Box sx={{ width: lgDown ? '45px' : 'auto', overflow: 'hidden' }}>
+        {/* <Box sx={{ width: lgDown ? '45px' : 'auto', overflow: 'hidden' }}>
           <Logo />
-        </Box>
+        </Box> */}
         {/* ------------------------------------------- */}
         {/* Toggle Button Sidebar */}
         {/* ------------------------------------------- */}
-        {lgDown ? (
+        {/* {lgDown ? (
           <IconButton
             color="inherit"
             aria-label="menu"
@@ -54,16 +54,16 @@ const Header = () => {
           </IconButton>
         ) : (
           ''
-        )}
+        )} */}
         {/* ------------------------------------------- */}
         {/* Search Dropdown */}
         {/* ------------------------------------------- */}
         {/* <Search /> */}
-        {lgUp ? (
+        {/* {lgUp ? (
           <>
             <Navigation />
           </>
-        ) : null}
+        ) : null} */}
         <Box flexGrow={1} />
         <Stack spacing={1} direction="row" alignItems="center">
           {/* <Language /> */}

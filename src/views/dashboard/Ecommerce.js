@@ -20,13 +20,12 @@ const Ecommerce = () => {
   return (
     <PageContainer title="eCommerce Dashboard" description="this is eCommerce Dashboard page">
       <Box mt={3}>
-        <Grid container spacing={3}>
-          {/* column */}
+        {/* <Grid container spacing={3}>
+
           <Grid item xs={12} lg={8}>
             <WelcomeCard />
           </Grid>
 
-          {/* column */}
           <Grid item xs={12} lg={4}>
             <Grid container spacing={3}>
               <Grid item xs={12} sm={6}>
@@ -56,29 +55,28 @@ const Ecommerce = () => {
               </Grid>
             </Grid>
           </Grid>
-          {/* column */}
+
           <Grid item xs={12} sm={6} lg={4}>
             <WeeklyStats />
           </Grid>
-          {/* column */}
+
           <Grid item xs={12} lg={4}>
             <YearlySales />
           </Grid>
-          {/* column */}
+
           <Grid item xs={12} lg={4}>
             <PaymentGateways />
           </Grid>
-          {/* column */}
+
 
           <Grid item xs={12} lg={4}>
             <RecentTransactions />
           </Grid>
-          {/* column */}
 
           <Grid item xs={12} lg={8}>
             <ProductPerformances />
           </Grid>
-        </Grid>
+        </Grid> */}
       </Box>
     </PageContainer>
   );

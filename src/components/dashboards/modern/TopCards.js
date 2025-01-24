@@ -1,49 +1,35 @@
-import React from 'react';
-import { Box, CardContent, Grid, Typography } from '@mui/material';
-
-import icon1 from '../../../assets/images/svgs/icon-connect.svg';
-import icon2 from '../../../assets/images/svgs/icon-user-male.svg';
-import icon3 from '../../../assets/images/svgs/icon-briefcase.svg';
-import icon4 from '../../../assets/images/svgs/icon-mailbox.svg';
-import icon5 from '../../../assets/images/svgs/icon-favorites.svg';
-import icon6 from '../../../assets/images/svgs/icon-speech-bubble.svg';
+import { Box, CardContent, Grid, Typography } from "@mui/material";
+import PeopleIcon from "@mui/icons-material/People"; // Total usuários
+import HomeWorkIcon from "@mui/icons-material/HomeWork"; // Imobiliárias
+import BusinessIcon from "@mui/icons-material/Business"; // Proprietários
+import PersonIcon from "@mui/icons-material/Person"; // Corretores
+import WarningIcon from "@mui/icons-material/Warning"; // Cadastro incompleto
 
 const topcards = [
   {
-    icon: icon2,
-    title: 'Employees',
-    digits: '96',
-    bgcolor: 'primary',
+    icon: <PeopleIcon fontSize="large" color="primary" />,
+    title: "Total usuários",
+    digits: "96",
   },
   {
-    icon: icon3,
-    title: 'Clients',
-    digits: '3,650',
-    bgcolor: 'warning',
+    icon: <BusinessIcon fontSize="large" color="secondary" />,
+    title: "Proprietários",
+    digits: "985",
   },
   {
-    icon: icon4,
-    title: 'Projects',
-    digits: '356',
-    bgcolor: 'secondary',
+    icon: <PersonIcon fontSize="large" color="success" />,
+    title: "Corretores",
+    digits: "356",
   },
   {
-    icon: icon5,
-    title: 'Events',
-    digits: '696',
-    bgcolor: 'error',
+    icon: <HomeWorkIcon fontSize="large" color="warning" />,
+    title: "Imobiliárias",
+    digits: "696",
   },
   {
-    icon: icon6,
-    title: 'Payroll',
-    digits: '$96k',
-    bgcolor: 'success',
-  },
-  {
-    icon: icon1,
-    title: 'Reports',
-    digits: '59',
-    bgcolor: 'info',
+    icon: <WarningIcon fontSize="large" color="error" />,
+    title: "Cadastro incompleto",
+    digits: "696",
   },
 ];
 
@@ -51,19 +37,28 @@ const TopCards = () => {
   return (
     <Grid container spacing={3}>
       {topcards.map((topcard, i) => (
-        <Grid item xs={12} sm={4} lg={2} key={i}>
-          <Box bgcolor={topcard.bgcolor + '.light'} textAlign="center">
+        <Grid item xs={12} sm={4} lg={2.4} key={i}>
+          <Box
+            sx={{
+              border: "1px solid #e0e0e0",
+              textAlign: "center",
+              borderRadius: "8px",
+              "&:hover": {
+                border: "1px solid #bdbdbd",
+              },
+            }}
+          >
             <CardContent>
-              <img src={topcard.icon} alt={topcard.icon} width="50" />
+              {topcard.icon}
               <Typography
-                color={topcard.bgcolor + '.main'}
                 mt={1}
                 variant="subtitle1"
                 fontWeight={600}
+                color="text.primary"
               >
                 {topcard.title}
               </Typography>
-              <Typography color={topcard.bgcolor + '.main'} variant="h4" fontWeight={600}>
+              <Typography variant="h4" fontWeight={600} color="text.secondary">
                 {topcard.digits}
               </Typography>
             </CardContent>
