@@ -38,7 +38,7 @@ const InvoiceList = Loadable(lazy(() => import('../views/apps/invoice/List')));
 const InvoiceCreate = Loadable(lazy(() => import('../views/apps/invoice/Create')));
 const InvoiceDetail = Loadable(lazy(() => import('../views/apps/invoice/Detail')));
 const InvoiceEdit = Loadable(lazy(() => import('../views/apps/invoice/Edit')));
-const Kanban = Loadable(lazy(() => import('../views/apps/kanban/Kanban')));
+
 
 // Pages
 const RollbaseCASL = Loadable(lazy(() => import('../views/pages/rollbaseCASL/RollbaseCASL')));
@@ -195,7 +195,6 @@ const Router = [
         path: '/apps/ecommerce/detail/:id', 
         element: <ProtectedRoute element={<EcommerceDetail />} /> 
       },
-      { path: '/apps/kanban', element: <ProtectedRoute element={<Kanban />} /> },
       { path: '/apps/invoice/list', element: <ProtectedRoute element={<InvoiceList />} /> },
       { path: '/apps/invoice/create', element: <ProtectedRoute element={<InvoiceCreate />} /> },
       { 
