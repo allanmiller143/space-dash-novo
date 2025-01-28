@@ -81,7 +81,7 @@ const Menuitems = [
   },
   {
     id: uniqueId(),
-    title: 'Usuãrios',
+    title: 'Usuários',
     icon: IconUserCircle,
     href: '/dashboards/users',
   },
