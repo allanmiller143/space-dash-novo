@@ -32,7 +32,7 @@ const BannerContent = () => {
           <Typography color={'secondary'}>
             <IconRocket size={'21'} />
           </Typography>{' '}
-          Kick start your project with
+          Conheça a space imóveis
         </Typography>
 
         <Typography
@@ -47,11 +47,11 @@ const BannerContent = () => {
             },
           }}
         >
-          Most powerful &{' '}
+          A mais Amigável  {' '}
           <Typography component={'span'} variant="none" color={'primary'}>
-            Developer friendly
+            e simples
           </Typography>{' '}
-          React dashboard
+          plataforma de imóveis
         </Typography>
       </motion.div>
       <Box pt={4} pb={3}>
@@ -66,8 +66,7 @@ const BannerContent = () => {
           }}
         >
           <Typography variant="h5" fontWeight={300}>
-            Modernize comes with light & dark color skins, well designed dashboards, applications
-            and pages.
+            Compre sua casa com facilidade, simplicidade e confiança.
           </Typography>
         </motion.div>
       </Box>
@@ -87,7 +86,7 @@ const BannerContent = () => {
           </StyledButton>
 
           <StyledButton2 variant="outlined" component={NavLink} to="/dashboards/modern">
-            Live Preview
+            Ver imoveis
           </StyledButton2>
         </Stack>
       </motion.div>

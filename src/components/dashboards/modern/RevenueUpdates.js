@@ -40,11 +40,13 @@ const AtualizacaoReceitas = () => {
         const total = dadosCompletos.reduce((acc, dado) => acc + dado.value, 0);
         setTotalvalue(total);
       } else {
-        alert('Erro ao carregar conteúdo');
+        toast.error('Erro ao carregar conteúdo');
+        localStorage.clear();
         console.log(response);
       }
     } catch (error) {
-      alert('Ocorreu um erro inesperado');
+      toast.error('Ocorreu um erro inesperado');
+      localStorage.clear();
     }
   };
 

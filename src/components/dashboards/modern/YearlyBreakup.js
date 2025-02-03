@@ -6,6 +6,7 @@ import { IconArrowUpLeft } from '@tabler/icons';
 
 import DashboardCard from '../../shared/DashboardCard';
 import { getData } from '../../../Services/Api';
+import { toast } from 'sonner';
 
 const YearlyBreakup = () => {
   // chart color
@@ -60,15 +61,17 @@ const YearlyBreakup = () => {
             }else{
               setSeriescolumnchart([valueAtual, valueAnterior, total]);
             }
-            
           }
         });  
       } else {
-        alert('Erro ao carregar conteúdo');
+        toast.error('Erro ao carregar conteúdo');
+        localStorage.clear();
         console.log(response);
       }
     } catch (error) {
-      alert('Ocorreu um erro inesperado');
+      toast.error('Ocorreu um erro inesperado');
+      localStorage.clear();
+
     }
   };
 

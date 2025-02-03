@@ -178,7 +178,7 @@ const Router = [
       { path: '/apps/tickets', element: <ProtectedRoute element={<Tickets />} /> },
       { path: '/apps/contacts', element: <ProtectedRoute element={<Contacts />} /> },
       { path: '/apps/ecommerce/shop', element: <ProtectedRoute element={<Ecommerce />} /> },
-      { path: '/apps/blog/posts', element: <ProtectedRoute element={<Blog />} /> },
+      { path: '/apps/blog/posts', element: <ProtectedRoute element={<Blog/>} /> },
       { 
         path: '/apps/blog/detail/:id', 
         element: <ProtectedRoute element={<BlogDetail />} /> 

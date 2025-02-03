@@ -5,6 +5,7 @@ import CustomFormLabel from '../../../components/forms/theme-elements/CustomForm
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { postData } from '../../../Services/Api';
+import { toast } from 'sonner';
 
 function AuthLogin  ()  {
 
@@ -31,10 +32,10 @@ function AuthLogin  ()  {
           localStorage.setItem('admin', JSON.stringify(user));
           navigate('/dashboards/modern');
         } else {
-          alert('Email ou senha inválidos');
+          toast.error('Email ou senha inválidos');
         }
       } catch (error) {
-        alert('Ocorreu um erro');
+        toast.error('Ocorreu um erro');
       } finally {
         setLoading(false);      }
     }
