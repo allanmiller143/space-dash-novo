@@ -5,13 +5,14 @@ import * as dropdownData from './data';
 import { IconMail } from '@tabler/icons';
 import { Stack } from '@mui/system';
 import ProfileImg from 'src/assets/images/profile/user-1.jpg';
-import unlimitedImg from 'src/assets/images/backgrounds/unlimited-bg.png';
+import { useNavigate } from 'react-router-dom';
 import Scrollbar from 'src/components/custom-scroll/Scrollbar';
 import logo from '../../../../assets/images/logos/logo.png';
 
 
 const Profile = () => {
   const [anchorEl2, setAnchorEl2] = useState(null);
+  const navigate = useNavigate();
   const handleClick2 = (event) => {
     setAnchorEl2(event.currentTarget);
   };
@@ -21,7 +22,7 @@ const Profile = () => {
   };
   const logOut = () => {
     localStorage.clear();
-    window.location.reload();
+    navigate('/auth/login2');
   };
 
   return (

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import Chart from 'react-apexcharts';
 import { useTheme } from '@mui/material/styles';
 import { Grid, Stack, Typography, Avatar } from '@mui/material';
-import { IconArrowUpLeft } from '@tabler/icons';
+import { IconArrowUpLeft,IconArrowDownRight, IconArrowDownLeft } from '@tabler/icons';
 
 import DashboardCard from '../../shared/DashboardCard';
 import { getData } from '../../../Services/Api';
@@ -138,7 +138,13 @@ const YearlyBreakup = () => {
           </Typography>
           <Stack direction="row" spacing={1} mt={1} alignItems="center">
             <Avatar sx={{ bgcolor: successlight, width: 27, height: 27 }}>
-              <IconArrowUpLeft width={20} color="#39B69A" />
+              {
+                valueMesAtual.value - valueMesAnterior.value > 0 ? (
+                  <IconArrowUpLeft width={20} color="#39B69A" />
+                ) : (
+                  <IconArrowDownLeft width={20} color="#FA896B" />
+                )
+              }
             </Avatar>
             <Typography variant="subtitle2" fontWeight="600">
               {(valueMesAtual.value - valueMesAnterior.value) * 100} %

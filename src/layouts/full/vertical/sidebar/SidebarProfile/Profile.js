@@ -1,15 +1,16 @@
 import { Box, Avatar, Typography, IconButton, Tooltip, useMediaQuery } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { IconPower } from '@tabler/icons';
+import { useNavigate } from 'react-router-dom';
 import logo from '../../../../../assets/images/logos/logo.png';
 export const Profile = () => {
   const customizer = useSelector((state) => state.customizer);
   const lgUp = useMediaQuery((theme) => theme.breakpoints.up('lg'));
   const hideMenu = lgUp ? customizer.isCollapse && !customizer.isSidebarHover : '';
-
+  const navigate = useNavigate();
   const logOut = () => {
     localStorage.clear();
-    window.location.reload();
+    navigate('/auth/login2');
   };
 
   return (
