@@ -52,11 +52,11 @@ async function loadData (setLoading) {
       if(response.status === 200){
         return response.userInfo;
       }else{
-        toast.error('deu ruim no else');
+        toast.error('Algo deu errado');
         return initialDataList;
       }
     }catch(error){
-      toast.error('deu ruim no catch');
+      toast.error('algo deu errado');
       return initialDataList;
 
     }finally{
