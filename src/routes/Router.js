@@ -4,16 +4,19 @@ import { Navigate } from 'react-router-dom';
 import ProtectedRoute from './ProtectedRoute';
 import Loadable from '../layouts/full/shared/loadable/Loadable';
 import CatchError from '../views/apps/CatchError/CatchError';
-import Usuarios from '../views/Usuarios/Tela/Usuarios';
-import Imoveis from '../views/NovosImoveis/Tela/Imoveis';
-import Settings from '../views/Settings/Tela/Settings';
+import Usuarios from "../views/apps/painel/Usuarios/Tela/Usuarios";
+import Settings from "../views/apps/painel/Settings/Tela/Settings";
+import Imoveis from '../views/apps/painel/NovosImoveis/Tela/Imoveis';
+import Anuncios from '../views/apps/painel/Anuncios/InserirAnuncio/Anuncios'
+import GerenciarAnuncios from '../views/apps/painel/Anuncios/GerenciarAnuncios.js/GerenciarAnuncios';
+
 /* ***Layouts**** */
 const FullLayout = Loadable(lazy(() => import('../layouts/full/FullLayout')));
 const BlankLayout = Loadable(lazy(() => import('../layouts/blank/BlankLayout')));
 
 /* ****Pages***** */
-const ModernDash = Loadable(lazy(() => import('../views/dashboard/Modern')));
-const EcommerceDash = Loadable(lazy(() => import('../views/dashboard/Ecommerce')));
+const ModernDash = Loadable(lazy(() => import('../views/apps/painel/Home/Modern')));
+const EcommerceDash = Loadable(lazy(() => import('../views/apps/painel/Payments/Ecommerce')));
 
 /* ****Apps***** */
 const Chats = Loadable(lazy(() => import('../views/apps/chat/Chat')));
@@ -165,6 +168,16 @@ const Router = [
         path: '/dashboards/imoveis', 
         exact: true, 
         element: <ProtectedRoute element={<Imoveis />} /> 
+      },
+      { 
+        path: '/dashboards/anuncios', 
+        exact: true, 
+        element: <ProtectedRoute element={<Anuncios />} /> 
+      },
+      { 
+        path: '/dashboards/gerenciar-anuncios', 
+        exact: true, 
+        element: <ProtectedRoute element={<GerenciarAnuncios/>} /> 
       },
       { 
         path: '/dashboards/settings', 

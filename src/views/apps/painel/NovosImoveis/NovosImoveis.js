@@ -1,10 +1,11 @@
+/* eslint-disable no-unused-vars */
 import { useState, useEffect } from "react";
 import {Box,Typography,List,ListItem,ListItemAvatar,ListItemText,Avatar,Skeleton,Button,} from "@mui/material";
 import NovosImoveisDialog from "./NovosImoveisDialog";
-import { getData } from "../../Services/Api";
 import { useNavigate } from 'react-router-dom';
 import {toast} from 'sonner';
-import DashboardCard from "../../components/shared/DashboardCard";
+import { getData } from "../../../../Services/Api";
+import DashboardCard from "../../../../components/shared/DashboardCard";
 
 const ImoveisList = () => {
   const [imoveis, setImoveis] = useState([]);
@@ -48,6 +49,7 @@ const ImoveisList = () => {
     setDialogOpen(false);
     setSelectedImovel(null);
   };
+
 
   const type = (type) => {
     switch (type) {

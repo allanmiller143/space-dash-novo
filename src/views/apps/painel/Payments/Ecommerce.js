@@ -1,28 +1,26 @@
 import React from 'react';
 import { Box, Grid } from '@mui/material';
 import PageContainer from 'src/components/container/PageContainer';
-
-import WeeklyStats from 'src/components/dashboards/modern/WeeklyStats';
-import YearlySales from 'src/components/dashboards/ecommerce/YearlySales';
-import PaymentGateways from 'src/components/dashboards/ecommerce/PaymentGateways';
-import WelcomeCard from 'src/components/dashboards/ecommerce/WelcomeCard';
-import Expence from 'src/components/dashboards/ecommerce/Expence';
-import Growth from 'src/components/dashboards/ecommerce/Growth';
-import RevenueUpdates from 'src/components/dashboards/ecommerce/RevenueUpdates';
-import SalesOverview from 'src/components/dashboards/ecommerce/SalesOverview';
-import SalesTwo from 'src/components/dashboards/ecommerce/SalesTwo';
-import Sales from 'src/components/dashboards/ecommerce/Sales';
-import MonthlyEarnings from 'src/components/dashboards/ecommerce/MonthlyEarnings';
-import ProductPerformances from 'src/components/dashboards/ecommerce/ProductPerformances';
-import RecentTransactions from 'src/components/dashboards/ecommerce/RecentTransactions';
+import WelcomeCard from '../../../../components/dashboards/Payment/WelcomeCard';
+import Expence from '../../../../components/dashboards/Payment/Expence';
+import Sales from '../../../../components/dashboards/Payment/Sales';
+import RevenueUpdates from '../../../../components/dashboards/Payment/RevenueUpdates';  
+import SalesOverview from '../../../../components/dashboards/Payment/SalesOverview';
+import SalesTwo from '../../../../components/dashboards/Payment/SalesTwo';
+import Growth from '../../../../components/dashboards/Payment/Growth';
+import MonthlyEarnings from '../../../../components/dashboards/Payment/MonthlyEarnings';
+import WeeklyStats from '../../../../components/dashboards/Home/WeeklyStats';
+import PaymentGateways from '../../../../components/dashboards/Payment/PaymentGateways';
+import RecentTransactions from '../../../../components/dashboards/Payment/RecentTransactions';
+import ProductPerformances from '../../../../components/dashboards/Payment/ProductPerformances';
 
 const Ecommerce = () => {
   return (
     <PageContainer title="eCommerce Dashboard" description="this is eCommerce Dashboard page">
       <Box mt={3}>
-        {/* <Grid container spacing={3}>
+        <Grid container spacing={3}>
 
-          <Grid item xs={12} lg={8}>
+          {/* <Grid item xs={12} lg={8}>
             <WelcomeCard />
           </Grid>
 
@@ -57,15 +55,12 @@ const Ecommerce = () => {
           </Grid>
 
           <Grid item xs={12} sm={6} lg={4}>
-            <WeeklyStats />
+            <WeeklyStats/>
           </Grid>
 
-          <Grid item xs={12} lg={4}>
-            <YearlySales />
-          </Grid>
 
           <Grid item xs={12} lg={4}>
-            <PaymentGateways />
+            <PaymentGateways/>
           </Grid>
 
 
@@ -75,8 +70,8 @@ const Ecommerce = () => {
 
           <Grid item xs={12} lg={8}>
             <ProductPerformances />
-          </Grid>
-        </Grid> */}
+          </Grid> */}
+        </Grid>
       </Box>
     </PageContainer>
   );

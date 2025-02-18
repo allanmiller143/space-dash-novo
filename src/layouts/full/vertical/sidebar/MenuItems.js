@@ -69,6 +69,26 @@ const Menuitems = [
   },
   {
     id: uniqueId(),
+    title: 'Anúncios',
+    icon: IconNotes,
+    href: '/dashboards/anuncios',
+    children: [
+      {
+        id: uniqueId(),
+        title: 'Inserir anúncio',
+        icon: IconPoint,
+        href: '/dashboards/anuncios',
+      },
+      {
+        id: uniqueId(),
+        title: 'Gerenciar anúncios',
+        icon: IconPoint,
+        href: '/dashboards/gerenciar-anuncios',
+      },
+    ],
+  },
+  {
+    id: uniqueId(),
     title: 'Pagamentos',
     icon: IconShoppingCart,
     href: '/dashboards/ecommerce',
@@ -91,6 +111,7 @@ const Menuitems = [
     icon: IconSettings,
     href: '/dashboards/settings',
   },
+
   // {
   //   navlabel: true,
   //   subheader: 'Apps',
@@ -104,26 +125,7 @@ const Menuitems = [
   //   href: '/apps/contacts',
   // },
 
-  // {
-  //   id: uniqueId(),
-  //   title: 'Blog',
-  //   icon: IconChartDonut3,
-  //   href: '/apps/blog/',
-  //   children: [
-  //     {
-  //       id: uniqueId(),
-  //       title: 'Posts',
-  //       icon: IconPoint,
-  //       href: '/apps/blog/posts',
-  //     },
-  //     {
-  //       id: uniqueId(),
-  //       title: 'Detail',
-  //       icon: IconPoint,
-  //       href: '/apps/blog/detail/streaming-video-way-before-it-was-cool-go-dark-tomorrow',
-  //     },
-  //   ],
-  // },
+
   // {
   //   id: uniqueId(),
   //   title: 'Ecommerce',

@@ -20,6 +20,9 @@ const NovosImoveisDialog = ({ open, onClose, imovel,imoveis,setImoveis }) => {
   
   // Função para mapear comodidades disponíveis
   const renderCommodities = () => {
+
+    if (!commodities || typeof commodities !== "object") return null;
+
     const commodityIcons = {
       pool: <Pool />,
       grill: <OutdoorGrill />,

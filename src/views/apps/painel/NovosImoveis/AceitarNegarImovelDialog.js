@@ -4,7 +4,7 @@ import {Cancel} from "@mui/icons-material";
 import {Dialog,DialogTitle,DialogContent,DialogActions,Typography,Button,Box,IconButton,TextField,MenuItem, Slide} from "@mui/material";
 import React, { useState } from "react";
 import { toast } from "sonner";
-import { postData } from "../../Services/Api";
+import { postData } from "../../../../Services/Api";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -27,7 +27,7 @@ const AceitarNegarImovelDialog = ({ open, onClose, imovel, accepted, imoveis, se
   
     const handleConfirmar = async () => {
       if (!accepted && !motivo) {
-        alert("Por favor, informe o motivo da recusa.");
+        toast.info("Por favor, informe o motivo da recusa.");
         return;
       }
 
@@ -44,10 +44,10 @@ const AceitarNegarImovelDialog = ({ open, onClose, imovel, accepted, imoveis, se
         setLoading(true);
         const response = await postData(`admin/property/deny/${imovel.id}`,{'reason': motivo}, token);
         if( response.status === 200){
-          alert('Publicação recusada com sucesso');
+          toast.success('Publicação recusada com sucesso');
           setImoveis((prevImoveis) => prevImoveis.filter((item) => item.id !== imovel.id));
         }else{
-          alert(response.message);
+          toast.error(response.message);
         }
       }catch(e){
         console.log(e);
@@ -63,13 +63,13 @@ const AceitarNegarImovelDialog = ({ open, onClose, imovel, accepted, imoveis, se
       try {
         const response = await postData(`admin/property/approve/${imovel.id}`,{},token);
         if (response.status === 200) {
-          alert("Publicação concluída com sucesso");
+          toast.success("Publicação concluída com sucesso");
           setImoveis((prevImoveis) => prevImoveis.filter((item) => item.id !== imovel.id));
         } else {
-          alert(response.message);
+          toast.error(response.message);
         }
       } catch (error) {
-        alert("Erro ao publicar imóvel");
+        toast.error("Erro ao publicar imóvel");
       } finally {
         setLoading(false);
         onClose();

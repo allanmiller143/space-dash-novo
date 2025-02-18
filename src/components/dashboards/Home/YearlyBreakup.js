@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import Chart from 'react-apexcharts';
 import { useTheme } from '@mui/material/styles';
 import { Grid, Stack, Typography, Avatar } from '@mui/material';
-import { IconArrowUpLeft,IconArrowDownRight, IconArrowDownLeft } from '@tabler/icons';
+import { IconArrowUpLeft, IconArrowDownLeft } from '@tabler/icons';
 
 import DashboardCard from '../../shared/DashboardCard';
 import { getData } from '../../../Services/Api';
@@ -17,7 +17,6 @@ const YearlyBreakup = () => {
   const [valueMesAtual, setValueMesAtual] = useState({month : '', value : 0});
   const [valueMesAnterior, setValueMesAnterior] = useState({month : '', value : 0});
   const [seriescolumnchart, setSeriescolumnchart] = useState([]);
-
   const token = localStorage.getItem("token");
 
   const meses = [
@@ -65,13 +64,10 @@ const YearlyBreakup = () => {
         });  
       } else {
         toast.error('Erro ao carregar conteúdo');
-        localStorage.clear();
-        console.log(response);
-      }
+        localStorage.clear();      }
     } catch (error) {
       toast.error('Ocorreu um erro inesperado');
       localStorage.clear();
-
     }
   };
 

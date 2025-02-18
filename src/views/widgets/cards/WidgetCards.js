@@ -3,9 +3,9 @@ import { Grid } from '@mui/material';
 import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
 import PageContainer from 'src/components/container/PageContainer';
 
-import PaymentGateways from '../../../components/dashboards/ecommerce/PaymentGateways';
-import RecentTransactions from '../../../components/dashboards/ecommerce/RecentTransactions';
-import TopCards from '../../..//components/dashboards/modern/TopCards';
+import PaymentGateways from '../../../components/dashboards/Payment/PaymentGateways';
+import RecentTransactions from '../../../components/dashboards/Payment/RecentTransactions';
+import TopCards from '../../../components/dashboards/Home/TopCards';
 import UpcomingAcitivity from '../../../components/widgets/cards/UpcomingActivity';
 import ComplexCard from '../../../components/widgets/cards/ComplexCard';
 import MusicCard from '../../../components/widgets/cards/MusicCard';

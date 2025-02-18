@@ -16,10 +16,9 @@ function AuthLogin  ()  {
 
   const login = async (event) => {
     event.preventDefault();
-
-
+    
     if (email === '' || password === '') {
-      alert('Preencha todos os campos');
+      toast.warning('Preencha todos os campos');
     } else {
       setLoading(true);
       try {
@@ -37,7 +36,8 @@ function AuthLogin  ()  {
       } catch (error) {
         toast.error('Ocorreu um erro');
       } finally {
-        setLoading(false);      }
+        setLoading(false);    
+      }
     }
   };
 
