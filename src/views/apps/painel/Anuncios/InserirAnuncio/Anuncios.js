@@ -17,6 +17,7 @@ const AnuncioEditor = () => {
     image: '',
     duration: '',
     type: 'big',
+    adm : false
   });
 
   const [adType, setAdType] = useState('big'); 
@@ -80,6 +81,15 @@ const AnuncioEditor = () => {
               <Grid item xs={12}>
                 <Typography variant="h5"> Insira as informações do anúncio</Typography>
               </Grid>
+              <Grid item md={12} xs={12}>
+                <FormControl fullWidth>
+                  <InputLabel>Inserir anúncio grátis</InputLabel>
+                  <Select name="adm" value={form.adm} onChange={handleChange} label="Duração do anúncio">
+                    <MenuItem value={true}>Grátis</MenuItem>
+                    <MenuItem value={false}>Pago</MenuItem>
+                  </Select>
+                </FormControl>
+              </Grid>
               <Grid item md={6} xs={12}>
                 <TextField 
                   label="Nome do anunciante" 
@@ -91,6 +101,7 @@ const AnuncioEditor = () => {
                   helperText={(touched.name || submitted) && !isValidName(form.name) ? 'Nome inválido' : ''}
                 />
               </Grid>
+
               <Grid item md={6} xs={12}>
                 <TextField 
                   label="CPF do anunciante" 
@@ -120,13 +131,11 @@ const AnuncioEditor = () => {
                   name="link" 
                   value={form.link} 
                   onChange={handleChange} 
-                  error={(touched.link || submitted) && !isValidName(form.link)}
-                  helperText={(touched.link || submitted) && !isValidName(form.link) ? 'Link inválido' : ''}
                 />
               </Grid>
 
-              <Grid item md={6} xs={12}>
-                <FormControl fullWidth error={(touched.duration || submitted) && !isValidDuration(form.duration)}>
+              <Grid item md={6} xs={12} sx = { {display : form.adm ? 'none' : 'block'}}>
+                <FormControl fullWidth error={(touched.duration || submitted) && !isValidDuration(form.duration)} disabled = {form.adm === true}> 
                   <InputLabel>Duração do anúncio</InputLabel>
                   <Select name="duration" value={form.duration} onChange={handleChange} label="Duração do anúncio">
                     <MenuItem value={7}>7 dias - R${priceMap[adType][7]}</MenuItem>
@@ -137,8 +146,13 @@ const AnuncioEditor = () => {
               </Grid>
             </Grid>
 
-            <Box p={2}>
-              <Button {...getRootProps()} sx={{ padding: 1, textAlign: 'center', cursor: 'pointer', marginTop: 2 }} disabled={!isFormValid(form)}>
+            <Box p={2} >
+              <Typography variant="body2" color="textSecondary">
+                {adType === 'big' 
+                  ? "Dimensão recomendada: 1200 x 500" 
+                  : "Dimensão recomendada: 300 x 500 "}
+              </Typography>
+              <Button {...getRootProps()} sx={{ padding: 1, textAlign: 'center', cursor: 'pointer', marginTop: 1 }} disabled={!isFormValid(form)}>
                 <input {...getInputProps()} />
                 <Typography>Selecionar imagem</Typography>
               </Button>

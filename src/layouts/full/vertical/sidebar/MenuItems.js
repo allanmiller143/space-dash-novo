@@ -89,28 +89,34 @@ const Menuitems = [
   },
   {
     id: uniqueId(),
-    title: 'Pagamentos',
-    icon: IconShoppingCart,
-    href: '/dashboards/ecommerce',
+    title: 'Mensagens',
+    icon: IconMail,
+    href: '/dashboards/messages',
   },
-  {
-    id: uniqueId(),
-    title: 'Imoveis',
-    icon: IconHome,
-    href: '/dashboards/imoveis',
-  },
+  // {
+  //   id: uniqueId(),
+  //   title: 'Pagamentos',
+  //   icon: IconShoppingCart,
+  //   href: '/dashboards/ecommerce',
+  // },
+  // {
+  //   id: uniqueId(),
+  //   title: 'Imoveis',
+  //   icon: IconHome,
+  //   href: '/dashboards/imoveis',
+  // },
   {
     id: uniqueId(),
     title: 'Usuários',
     icon: IconUserCircle,
     href: '/dashboards/users',
   },
-  {
-    id: uniqueId(),
-    title: 'Configurações',
-    icon: IconSettings,
-    href: '/dashboards/settings',
-  },
+  // {
+  //   id: uniqueId(),
+  //   title: 'Configurações',
+  //   icon: IconSettings,
+  //   href: '/dashboards/settings',
+  // },
 
   // {
   //   navlabel: true,

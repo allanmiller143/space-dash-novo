@@ -4,11 +4,12 @@ import { Navigate } from 'react-router-dom';
 import ProtectedRoute from './ProtectedRoute';
 import Loadable from '../layouts/full/shared/loadable/Loadable';
 import CatchError from '../views/apps/CatchError/CatchError';
-import Usuarios from "../views/apps/painel/Usuarios/Tela/Usuarios";
+import Usuarios from "../views/apps/painel/Usuarios/Usuarios";
 import Settings from "../views/apps/painel/Settings/Tela/Settings";
 import Imoveis from '../views/apps/painel/NovosImoveis/Tela/Imoveis';
 import Anuncios from '../views/apps/painel/Anuncios/InserirAnuncio/Anuncios'
 import GerenciarAnuncios from '../views/apps/painel/Anuncios/GerenciarAnuncios.js/GerenciarAnuncios';
+import Messages from '../views/apps/painel/Messages/Messages';
 
 /* ***Layouts**** */
 const FullLayout = Loadable(lazy(() => import('../layouts/full/FullLayout')));
@@ -173,6 +174,11 @@ const Router = [
         path: '/dashboards/anuncios', 
         exact: true, 
         element: <ProtectedRoute element={<Anuncios />} /> 
+      },
+      { 
+        path: '/dashboards/messages', 
+        exact: true, 
+        element: <ProtectedRoute element={<Messages />} /> 
       },
       { 
         path: '/dashboards/gerenciar-anuncios', 

@@ -21,14 +21,16 @@ const ConfirmationDialog = ({ open, onClose, form, setForm, setAnuncios,setTouch
 
   
     const data = {
-      transactionAmount : form.duration,
-      announcerName : form.name,
-      announcerEmail : form.email,
-      announcerCpf  : form.cpf,
-      siteUrl : form.link,
-      type : form.type,
-      description : `Olá, ${form.name}, você está prestes a adquirir um pacote de anúncios da Space Imóveis, de valor de R$ ${form.duration}, com validade de ${form.duration} dias.`,
-    }
+      pending: form.adm ? false : true,
+      announcerName: form.name,
+      announcerEmail: form.email,
+      announcerCpf: form.cpf,
+      siteUrl: form.link,
+      type: form.type,
+      description: `Olá, ${form.name}, você está prestes a adquirir um pacote de anúncios da Space Imóveis, de valor de R$ ${form.duration}, com validade de ${form.duration} dias.`,
+      ...(form.adm === false && { transactionAmount: form.duration })
+    };
+    
     formData.append('photo', form.image);
     formData.append('data', JSON.stringify(data));
 

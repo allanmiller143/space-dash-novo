@@ -48,12 +48,20 @@ export const isValidName = (name) => {
   };
   
   export const isFormValid = (form) => {
-    return (
-      isValidName(form.name) &&
-      isValidCPF(form.cpf) &&
-      isValidEmail(form.email) &&
-      isValidName(form.link) &&
-      isValidDuration(form.duration)
-    );
+    if(form.adm){
+      return (
+        isValidName(form.name) &&
+        isValidCPF(form.cpf) &&
+        isValidEmail(form.email)
+      );
+    }else{
+      return (
+        isValidName(form.name) &&
+        isValidCPF(form.cpf) &&
+        isValidEmail(form.email) &&
+        isValidDuration(form.duration)
+      );
+    }
+
   };
   
