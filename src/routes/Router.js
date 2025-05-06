@@ -10,6 +10,7 @@ import Imoveis from '../views/apps/painel/NovosImoveis/Tela/Imoveis';
 import Anuncios from '../views/apps/painel/Anuncios/InserirAnuncio/Anuncios'
 import GerenciarAnuncios from '../views/apps/painel/Anuncios/GerenciarAnuncios.js/GerenciarAnuncios';
 import Messages from '../views/apps/painel/Messages/Messages';
+import GerenciarAnunciosFront from '../views/apps/painel/Anuncios/GerenciarAnunciosFront/GerenciarAnunciosFront';
 
 /* ***Layouts**** */
 const FullLayout = Loadable(lazy(() => import('../layouts/full/FullLayout')));
@@ -184,6 +185,11 @@ const Router = [
         path: '/dashboards/gerenciar-anuncios', 
         exact: true, 
         element: <ProtectedRoute element={<GerenciarAnuncios/>} /> 
+      },
+      { 
+        path: '/dashboards/gerenciar-anuncios-front', 
+        exact: true, 
+        element: <ProtectedRoute element={<GerenciarAnunciosFront/>} /> 
       },
       { 
         path: '/dashboards/settings', 

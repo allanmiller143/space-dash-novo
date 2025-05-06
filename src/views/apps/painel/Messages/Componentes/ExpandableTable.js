@@ -6,12 +6,8 @@ import { Stack } from '@mui/system';
 import ResponseDialog from './ResponseDialog';
 import { getData } from '../../../../../Services/Api';
 import male1 from '../../../../../assets/images/profile/user-1.jpg'
-import male2 from '../../../../../assets/images/profile/user-3.jpg'
-import male7 from '../../../../../assets/images/profile/user-7.jpg'
-
 import female1 from '../../../../../assets/images/profile/user-9.jpg'
-import female2 from '../../../../../assets/images/profile/user-10.jpg'
-import female6 from '../../../../../assets/images/profile/user-6.jpg'
+
 import { toast } from 'sonner';
 
 
@@ -53,8 +49,8 @@ const ExpandableTable = () => {
     const firstuserName = userName.split(' ')[0]; // Pega o primeiro nome
     const lastChar = firstuserName.slice(-1).toLowerCase(); // Pega a última letra em minúsculo
   
-    const maleList = [male1, male2,male7];
-    const femaleList = [female1, female2, female6];
+    const maleList = [male1];
+    const femaleList = [female1];
   
     if (lastChar === 'a') {
       return femaleList[Math.floor(Math.random() * femaleList.length)]; // Escolhe uma imagem feminina aleatória

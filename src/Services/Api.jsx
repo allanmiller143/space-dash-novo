@@ -4,8 +4,6 @@
 import axios from 'axios';
 
 const apiUrl = 'https://spaceimoveis-api-729fe2d11cef.herokuapp.com/';
-
-
 export async function getData(url= '',token = '') {
   try {
     const response = await axios.get(`${apiUrl}${url}`,

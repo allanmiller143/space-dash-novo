@@ -80,7 +80,7 @@ const ConfirmationDialog = ({ open, onClose, form, setForm, setAnuncios,setTouch
       <Divider />
       <DialogContent>
         <Typography variant="body1" sx={{ mb: 2 }}>
-          Assim que você clicar em continuar, um email será mandado para o anunciante : {form.email} com os detalhes do anúncio. e um link para pagamentos. 
+          Assim que você clicar em continuar, o anúncio será enviado para o site da space imóveis.
         </Typography>
       </DialogContent>
       {/* Botões de ação */}

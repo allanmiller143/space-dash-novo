@@ -1,5 +1,5 @@
-import React from 'react';
-import Menuitems from './MenuItems';
+import React, { useEffect, useState } from 'react';
+import GetMenuitems from './MenuItems';
 import { useLocation } from 'react-router';
 import { Box, List, useMediaQuery } from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
@@ -16,11 +16,20 @@ const SidebarItems = () => {
   const lgUp = useMediaQuery((theme) => theme.breakpoints.up('lg'));
   const hideMenu = lgUp ? customizer.isCollapse && !customizer.isSidebarHover : '';
   const dispatch = useDispatch();
+  const [menuItems, setMenuItems] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const items = await GetMenuitems();
+      setMenuItems(items);
+    };
+    fetchData();
+  }, []);
 
   return (
     <Box sx={{ px: 3 }}>
       <List sx={{ pt: 0 }} className="sidebarNav">
-        {Menuitems.map((item, index) => {
+        {menuItems.map((item, index) => {
           // {/********SubHeader**********/}
           if (item.subheader) {
             return <NavGroup item={item} hideMenu={hideMenu} key={item.subheader} />;

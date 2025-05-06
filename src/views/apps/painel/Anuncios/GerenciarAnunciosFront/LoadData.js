@@ -50,7 +50,8 @@ async function loadData(setLoading) {
     const response = await getData('announcement', token);
     console.log(response);
     if (response.status === 200) {
-      const filteredData = response.userInfo.filter(item => item.verified === "verified");
+      // Filtra apenas os que não têm verified igual a 'approved'
+      const filteredData = response.userInfo.filter(item => item.verified === "pending");
       return filteredData;
     } else {
       toast.error('Algo deu errado');
@@ -63,5 +64,6 @@ async function loadData(setLoading) {
     setLoading(false);
   }
 }
+
 
 export default loadData

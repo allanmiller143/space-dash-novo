@@ -73,7 +73,7 @@ const Profile = () => {
               <Avatar src={logo} alt={ProfileImg} sx={{ width: 95, height: 95 }} />
               <Box>
                 <Typography variant="subtitle2" color="textPrimary" fontWeight={600}>
-                  Space imóveis
+                  Space imóveis 
                 </Typography>
                 <Typography variant="subtitle2" color="textSecondary">
                   Painel admin

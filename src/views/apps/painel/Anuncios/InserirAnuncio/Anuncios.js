@@ -15,9 +15,8 @@ const AnuncioEditor = () => {
     cpf: '',
     link: '',
     image: '',
-    duration: '',
     type: 'big',
-    adm : false
+    adm : true
   });
 
   const [adType, setAdType] = useState('big'); 
@@ -81,15 +80,6 @@ const AnuncioEditor = () => {
               <Grid item xs={12}>
                 <Typography variant="h5"> Insira as informações do anúncio</Typography>
               </Grid>
-              <Grid item md={12} xs={12}>
-                <FormControl fullWidth>
-                  <InputLabel>Inserir anúncio grátis</InputLabel>
-                  <Select name="adm" value={form.adm} onChange={handleChange} label="Duração do anúncio">
-                    <MenuItem value={true}>Grátis</MenuItem>
-                    <MenuItem value={false}>Pago</MenuItem>
-                  </Select>
-                </FormControl>
-              </Grid>
               <Grid item md={6} xs={12}>
                 <TextField 
                   label="Nome do anunciante" 
@@ -134,16 +124,6 @@ const AnuncioEditor = () => {
                 />
               </Grid>
 
-              <Grid item md={6} xs={12} sx = { {display : form.adm ? 'none' : 'block'}}>
-                <FormControl fullWidth error={(touched.duration || submitted) && !isValidDuration(form.duration)} disabled = {form.adm === true}> 
-                  <InputLabel>Duração do anúncio</InputLabel>
-                  <Select name="duration" value={form.duration} onChange={handleChange} label="Duração do anúncio">
-                    <MenuItem value={7}>7 dias - R${priceMap[adType][7]}</MenuItem>
-                    <MenuItem value={15}>15 dias - R${priceMap[adType][15]}</MenuItem>
-                    <MenuItem value={30}>30 dias - R${priceMap[adType][30]}</MenuItem>
-                  </Select>
-                </FormControl>
-              </Grid>
             </Grid>
 
             <Box p={2} >

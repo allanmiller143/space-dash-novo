@@ -27,7 +27,7 @@ const Modern = () => {
               <RevenueUpdates />
             </Grid>
             <Grid item sm={12} lg={12}>
-              <LatestUsers />
+              {/* <LatestUsers /> */}
             </Grid>
           </Grid>
         </Grid>

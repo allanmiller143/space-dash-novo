@@ -61,7 +61,7 @@ const ApagarAnuncios = ({ open, onClose, anuncio, setAnuncios, anuncios }) => {
                 <Divider/>
             </Box>
             <Typography variant ="body1" pt ={2} >
-                Tem certeza de que quer apagar o anúncio?
+                Tem certeza de que apagar o anúncio?
             </Typography>
         </DialogContent>
         <DialogActions>
